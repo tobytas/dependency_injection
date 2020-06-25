@@ -3,7 +3,7 @@ package com.gmail.wondergab12.retrotraining;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-class NetworkService {
+public class NetworkService {
 
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
 
@@ -11,7 +11,7 @@ class NetworkService {
         static final NetworkService INSTANCE = new NetworkService();
     }
 
-    static NetworkService getInstance() {
+    public static NetworkService getInstance() {
         return InstanceHolder.INSTANCE;
     }
 
@@ -24,7 +24,7 @@ class NetworkService {
                 .build();
     }
 
-    PlaceHolderService getPlaceHolderService() {
+    public PlaceHolderService getPlaceHolderService() {
         return retrofit.create(PlaceHolderService.class);
     }
 }
