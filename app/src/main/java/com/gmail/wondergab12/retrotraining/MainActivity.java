@@ -2,7 +2,6 @@ package com.gmail.wondergab12.retrotraining;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,16 +11,21 @@ import android.widget.Toast;
 
 import com.gmail.wondergab12.retrotraining.viewmodel.PostViewModel;
 
+import javax.inject.Inject;
+
 @SuppressWarnings("Convert2Lambda")
 public class MainActivity extends AppCompatActivity {
+
+    @Inject TextView textView;
+    @Inject Button button;
+    @Inject PostViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ((MyApplication) getApplication()).getAppComponent(this).inject(this);
 
-        final TextView textView = findViewById(R.id.textView);
-        final PostViewModel viewModel = new ViewModelProvider(this).get(PostViewModel.class);
         viewModel.getPost().observe(this, new Observer<PostContainer>() {
             @Override
             public void onChanged(PostContainer post) {
@@ -40,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 throwable.printStackTrace();
             }
         });
-        final Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

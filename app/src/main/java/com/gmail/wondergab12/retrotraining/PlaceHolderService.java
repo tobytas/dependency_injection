@@ -1,11 +1,11 @@
 package com.gmail.wondergab12.retrotraining;
 
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface PlaceHolderService {
 
     @GET("/posts/{id}")
-    Call<PostContainer> getPostWithId(@Path("id") int id);
+    Observable<PostContainer> getPostWithId(@Path("id") int id);
 }
